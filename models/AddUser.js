@@ -10,7 +10,7 @@ const AddUser = async (message, db, api) => {
     const concidence = await usersCollection.findOne({ username });
 
     if(!concidence) {
-      usersCollection.insertOne({ username }, err => {
+      usersCollection.insertOne({ username, completeToday: false }, err => {
         if (err) api.sendMessage({ chat_id: chatId, text: err})
         else api.sendMessage({
           chat_id: chatId,
