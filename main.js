@@ -1,5 +1,6 @@
 const telegram = require('telegram-bot-api');
 const MongoClient = require('mongodb').MongoClient;
+const schedule = require('node-schedule');
 
 const AddUser = require('./models/AddUser');
 const AcceptStandups = require('./models/AcceptStandups');
@@ -20,6 +21,9 @@ client.connect(err => {
     AcceptStandups(message, db, api)
   })
 
-  CheckStandups(db,api)
+
+  schedule.scheduleJob('0 0 16 * * *', () => {
+    CheckStandups(db, api)
+  })
 
 })
