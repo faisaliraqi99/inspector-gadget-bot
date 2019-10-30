@@ -9,7 +9,6 @@ const AcceptStandups = async (message, db, api) => {
     const username = '@' + message.from.username;
 
     if(newText.length < 50) {
-
       api.sendMessage({
         chat_id,
         text: 'Мне кажется 🤔 или стендап слишком короткий'
